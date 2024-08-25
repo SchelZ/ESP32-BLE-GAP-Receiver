@@ -4,7 +4,7 @@
 
 #define scanTime 5
 
-class MyAdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
+class AdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
   void onResult(BLEAdvertisedDevice advertisedDevice) {
     
     Serial.printf("Advertised Device: %s \n", advertisedDevice.toString().c_str());   // Print the device's address / name
@@ -26,7 +26,7 @@ void setup() {
   BLEDevice::init("");
   
   BLEScan* pBLEScan = BLEDevice::getScan();
-  pBLEScan->setAdvertisedDeviceCallbacks(new MyAdvertisedDeviceCallbacks());
+  pBLEScan->setAdvertisedDeviceCallbacks(new AdvertisedDeviceCallbacks());
 
   // Set the scan interval and window
   pBLEScan->setInterval(100);
