@@ -14,9 +14,21 @@ class AdvertisedDeviceCallbacks : public BLEAdvertisedDeviceCallbacks {
       Serial.print("Received Message: ");
       const char* data = manufacturerData.c_str();
       for (size_t i = 2; i < manufacturerData.length(); i++) { Serial.printf("%c", (char)data[i]);  }  // Print the manufacture data ( message ) 
+      
+      sscanf(data, "h:%d;s:%d;l:%d", &h, &s, &l);    // separate hsl based color to 3 int
+      Serial.print("h: ");
+      Serial.print(h);
+      Serial.print(", s: ");
+      Serial.print(s);
+      Serial.print(", l: ");
+      Serial.println(l);
+      Serial.println();
+      
       Serial.println();
     }
   }
+private:
+  unsigned char h = 0, s = 0, l = 0;
 };
 
 void setup() {
